@@ -1,7 +1,7 @@
 import 'package:ariztia_crm/core/UserPreferens.dart';
 import 'package:ariztia_crm/core/function_utils.dart';
 import 'package:ariztia_crm/core/utils.dart';
-import 'package:ariztia_crm/login/presentation/page/home_page.dart';
+import 'package:ariztia_crm/crm_ariztia/presentation/pages/home_page.dart';
 import 'package:ariztia_crm/login/presentation/page/login_screen.dart';
 import 'package:flutter/material.dart';
 

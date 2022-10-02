@@ -3,7 +3,7 @@ import 'package:ariztia_crm/core/utils.dart';
 import 'package:ariztia_crm/core/widgets/button_ariztia.dart';
 import 'package:ariztia_crm/login/data/models/user_login.dart';
 import 'package:ariztia_crm/login/data/repositories/read_user_login_firestore_repository_implements.dart';
-import 'package:ariztia_crm/login/presentation/page/home_page.dart';
+import 'package:ariztia_crm/crm_ariztia/presentation/pages/home_page.dart';
 import 'package:ariztia_crm/login/presentation/widgets/input_text_field_personalized.dart';
 import 'package:flutter/material.dart';
 

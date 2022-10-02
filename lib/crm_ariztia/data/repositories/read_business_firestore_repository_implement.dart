@@ -1,6 +1,6 @@
-import 'package:ariztia_crm/login/data/datasource/get_business_firestore_datasource.dart';
-import 'package:ariztia_crm/login/data/models/business_model.dart';
-import 'package:ariztia_crm/login/domain/repositories/read_business_firestore_repository.dart';
+import 'package:ariztia_crm/crm_ariztia/data/datasource/get_business_firestore_datasource.dart';
+import 'package:ariztia_crm/crm_ariztia/data/models/business_model.dart';
+import 'package:ariztia_crm/crm_ariztia/domain/repositories/read_business_firestore_repository.dart';
 
 class ReadBusinessFirestoreRepositoryImplements
     implements ReadBusinessFirestoreRepository {

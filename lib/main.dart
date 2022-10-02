@@ -1,6 +1,6 @@
 import 'package:ariztia_crm/core/UserPreferens.dart';
 import 'package:ariztia_crm/firebase_options.dart';
-import 'package:ariztia_crm/login/presentation/page/home_page.dart';
+import 'package:ariztia_crm/crm_ariztia/presentation/pages/home_page.dart';
 import 'package:ariztia_crm/login/presentation/page/login_screen.dart';
 import 'package:ariztia_crm/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';

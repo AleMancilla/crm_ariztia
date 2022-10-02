@@ -1,10 +1,9 @@
 import 'package:ariztia_crm/core/constants/api_firebase_constant.dart';
-import 'package:ariztia_crm/login/data/models/business_model.dart';
+import 'package:ariztia_crm/crm_ariztia/data/models/business_model.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GetBusinessFirestoreDatasource {
   Future<List<BusinessModel>> readBusiness() async {
-    print('__________ llamada a readBusiness __________  ');
     List<BusinessModel> listBusiness = [];
     await business
         .where('idBusiness',
