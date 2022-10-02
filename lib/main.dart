@@ -1,10 +1,15 @@
+import 'package:ariztia_crm/core/UserPreferens.dart';
 import 'package:ariztia_crm/firebase_options.dart';
+import 'package:ariztia_crm/login/presentation/page/home_page.dart';
 import 'package:ariztia_crm/login/presentation/page/login_screen.dart';
+import 'package:ariztia_crm/splash_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  final prefs = UserPreferences();
+  await prefs.initPreferences();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -16,11 +21,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ariztia CRM',
-      routes: {
-        'login': (context) => LoginScreen(),
-        // 'home_screen': (context) => const MenuScreen(),
-      },
-      initialRoute: 'login',
+      // routes: {
+      //   'login': (context) => LoginScreen(),
+      //   'homePage': (context) => HomePage(),
+      //   'splash': (context) => SplashScreen(),
+      //   // 'home_screen': (context) => const MenuScreen(),
+      // },
+      // initialRoute: 'splash',
+      home: SplashScreen(),
       theme: ThemeData(
         // Define the default brightness and colors.
         // brightness: Brightness.dark,

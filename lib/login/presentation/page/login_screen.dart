@@ -1,9 +1,7 @@
+import 'package:ariztia_crm/core/UserPreferens.dart';
 import 'package:ariztia_crm/core/utils.dart';
 import 'package:ariztia_crm/core/widgets/button_ariztia.dart';
-import 'package:ariztia_crm/core/widgets/text_field_ariztia.dart';
-import 'package:ariztia_crm/login/data/models/business_model.dart';
 import 'package:ariztia_crm/login/data/models/user_login.dart';
-import 'package:ariztia_crm/login/data/repositories/read_business_firestore_repository_implement.dart';
 import 'package:ariztia_crm/login/data/repositories/read_user_login_firestore_repository_implements.dart';
 import 'package:ariztia_crm/login/presentation/page/home_page.dart';
 import 'package:ariztia_crm/login/presentation/widgets/input_text_field_personalized.dart';
@@ -61,7 +59,9 @@ class LoginScreen extends StatelessWidget {
       response = await chargeUserForLogin() != null;
     });
     if (response) {
+      final prefs = UserPreferences();
       navigateToPage(context, HomePage());
+      prefs.setUserLogin(controllerUser.text);
     } else {
       print('no existe el usuario');
     }
