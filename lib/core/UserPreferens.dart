@@ -1,6 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-enum TokenState { tokenRefresh, tokenLogout }
+// enum TokenState { tokenRefresh, tokenLogout }
 
 class UserPreferences {
   static final UserPreferences _instancia = UserPreferences._internal();

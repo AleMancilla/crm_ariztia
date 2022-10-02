@@ -13,9 +13,9 @@ class GetBusinessFirestoreDatasource {
           for (var doc in querySnapshot.docs) {
             try {
               Map _json = (doc.data() as Map);
-              print(_json);
-              BusinessModel businessModel =
-                  BusinessModel(_json['idBusiness'], _json['name']);
+              // print(_json);
+              BusinessModel businessModel = BusinessModel(
+                  _json['idBusiness'], _json['name'], _json['photo']);
 
               listBusiness.add(businessModel);
             } catch (e) {
