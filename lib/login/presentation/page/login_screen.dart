@@ -1,5 +1,11 @@
+import 'package:ariztia_crm/core/utils.dart';
 import 'package:ariztia_crm/core/widgets/button_ariztia.dart';
 import 'package:ariztia_crm/core/widgets/text_field_ariztia.dart';
+import 'package:ariztia_crm/login/data/models/business_model.dart';
+import 'package:ariztia_crm/login/data/models/user_login.dart';
+import 'package:ariztia_crm/login/data/repositories/read_business_firestore_repository_implement.dart';
+import 'package:ariztia_crm/login/data/repositories/read_user_login_firestore_repository_implements.dart';
+import 'package:ariztia_crm/login/presentation/page/home_page.dart';
 import 'package:ariztia_crm/login/presentation/widgets/input_text_field_personalized.dart';
 import 'package:flutter/material.dart';
 
@@ -8,6 +14,8 @@ class LoginScreen extends StatelessWidget {
   final TextEditingController controllerUser = TextEditingController();
   final TextEditingController controllerPass = TextEditingController();
 
+  ReadUserLoginRepositoryImplements firebase =
+      ReadUserLoginRepositoryImplements();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,8 +38,8 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 20),
                   ButtonAriztia(
                       text: 'Iniciar Session',
-                      onpress: () {
-                        print('online,,.... ');
+                      onpress: () async {
+                        initSesion(context);
                       })
                 ],
               ),
@@ -40,5 +48,22 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<UserLogin?> chargeUserForLogin() async {
+    return await firebase.readUserForLogin(
+        controllerUser.text, controllerPass.text);
+  }
+
+  Future<void> initSesion(BuildContext context) async {
+    bool response = false;
+    await loadingAsyncFunction(context, () async {
+      response = await chargeUserForLogin() != null;
+    });
+    if (response) {
+      navigateToPage(context, HomePage());
+    } else {
+      print('no existe el usuario');
+    }
   }
 }
