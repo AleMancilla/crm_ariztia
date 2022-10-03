@@ -27,6 +27,7 @@ Future loadingAsyncFunction(
   try {
     await function();
   } catch (e) {
+    print('error___xxxxxxx>>> $e');
     showErrorAlert(context, 'ERROR AL CAPTURAR DATOS', '$e');
   }
   Navigator.pop(context);

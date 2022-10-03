@@ -23,6 +23,8 @@ class _HomePageState extends State<HomePage> {
   //   super.initState();
   // }
 
+  String itemSelected = '';
+
   @override
   Widget build(BuildContext context) {
     final BusinessBloc businessBloc =
@@ -42,11 +44,30 @@ class _HomePageState extends State<HomePage> {
                     if (state.idBusiness == '' || state.idBusiness == null) {
                       return selectedBusinessDefauld(context);
                     } else {
-                      return selectedBusiness(state.photo, state.nameBusiness,
-                          () {
-                        print(businessBloc.state.listBusiness);
-                        openBusinessSelectedOptions();
-                      });
+                      return Column(
+                        children: [
+                          selectedBusiness(state.photo, state.nameBusiness, () {
+                            print(businessBloc.state.listBusiness);
+                            openBusinessSelectedOptions();
+                          }),
+                          itemBusinessOptions(
+                            'Pedidos',
+                            'assets/images/list_icon.png',
+                          ),
+                          itemBusinessOptions(
+                            'Productos',
+                            'assets/images/food_icono.png',
+                          ),
+                          itemBusinessOptions(
+                            'Perfil',
+                            'assets/images/profile_icon.png',
+                          ),
+                          itemBusinessOptions(
+                            'Configuracion',
+                            'assets/images/settings_icon.png',
+                          ),
+                        ],
+                      );
                     }
                   },
                 ),
@@ -72,6 +93,44 @@ class _HomePageState extends State<HomePage> {
             ),
           )
         ],
+      ),
+    );
+  }
+
+  itemBusinessOptions(String title, String photo) {
+    bool isSelected = title == itemSelected;
+    return Material(
+      child: InkWell(
+        onTap: () {
+          itemSelected = title;
+          setState(() {});
+        },
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: isSelected
+                ? Theme.of(context).primaryColor
+                : Colors.transparent,
+          ),
+          child: Row(
+            children: [
+              Image.asset(
+                photo,
+                width: 40,
+                height: 40,
+                color: isSelected ? Colors.white : Colors.black87,
+              ),
+              SizedBox(width: 10),
+              Text(
+                title,
+                style: TextStyle(
+                  color: isSelected ? Colors.white : Colors.black87,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

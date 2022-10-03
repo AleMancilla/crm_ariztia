@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class GetProductsFirestoreDatasource {
   Future<List<ProductModel>> readProducts(String idBusiness) async {
+    print('==============>>>> 1');
     List<ProductModel> listProducts = [];
     await products
         .where('idBusiness', isEqualTo: idBusiness)
@@ -12,6 +13,7 @@ class GetProductsFirestoreDatasource {
       for (var doc in querySnapshot.docs) {
         try {
           Map _json = (doc.data() as Map);
+          print('==============>>>> 2');
 
           List arrayDays = _json['days']; // array is now List<dynamic>
           List<String> listDays = List<String>.from(arrayDays);
@@ -57,6 +59,7 @@ class GetProductsFirestoreDatasource {
         }
       }
     });
+    print('==============>>>> 3 == $listProducts');
 
     return listProducts;
   }

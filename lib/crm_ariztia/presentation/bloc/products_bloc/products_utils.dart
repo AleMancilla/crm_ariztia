@@ -9,23 +9,33 @@ final ReadProductsFirestoreRepositoryImplements
     ReadProductsFirestoreRepositoryImplements();
 
 Future<void> chargeAllProducts(BuildContext context,
-    {ProductsBloc? productsBloc,
-    String idBusinnes = 'OU0xmGobwJr7GrjJYAAr'}) async {
-  productsBloc ??= BlocProvider.of<ProductsBloc>(context, listen: false);
+    {String idBusinnes = 'OU0xmGobwJr7GrjJYAAr'}) async {
+  ProductsBloc productsBloc =
+      BlocProvider.of<ProductsBloc>(context, listen: false);
   await Future.delayed(Duration.zero, () async {
     // showProgressIndicator(context);
+    print('____ ___ 1 ___ ');
     await loadingAsyncFunction(context, () async {
-      return await getAllProducts(productsBloc!, idBusinnes);
+      print('____ ___ 2 ___ ');
+      return await getAllProducts(productsBloc, idBusinnes);
     });
+    print('____ ___ 6 ___ ');
   });
 }
 
 Future getAllProducts(ProductsBloc _productsBloc, String idBusinnes) async {
+  print('____ ___ 3 ___ ');
   await readProductsFirestoreRepositoryImplements
       .readListProducts(idBusinnes)
       .then((value) {
+    print('____ ___ 4 ___ ');
+    print(_productsBloc);
     _productsBloc.add(ProductsFinalEvent(value));
+    print(_productsBloc);
+    print('____ ___ 4.1 ___ ');
   }).onError((error, stackTrace) {
+    print('____ ___ erropr 1  ___ ');
     return throw '$error';
   });
+  print('____ ___ 7 ___ ');
 }

@@ -1,5 +1,8 @@
+import 'dart:html';
+
 import 'package:ariztia_crm/core/function_utils.dart';
 import 'package:ariztia_crm/crm_ariztia/presentation/bloc/business_bloc/business_bloc.dart';
+import 'package:ariztia_crm/crm_ariztia/presentation/bloc/products_bloc/products_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -38,12 +41,18 @@ class SelectedBusinessOptions extends StatelessWidget {
                         .map((e) => Container(
                               padding: EdgeInsets.symmetric(
                                   horizontal: 20, vertical: 5),
-                              child: selectedBusiness(e.photo, e.name, () {
+                              child:
+                                  selectedBusiness(e.photo, e.name, () async {
                                 businessBloc.add(BusinessSelectOneEvent(
                                     e.id,
                                     e.name,
                                     e.photo,
                                     businessBloc.state.listBusiness));
+                                Navigator.pop(context);
+                                print('########## >>>> ${e.id}');
+                                await chargeAllProducts(context,
+                                    idBusinnes: e.id);
+                                print('########## FINALIZOOOO >>>> ${e.id}');
                               }),
                             ))
                         .toList()
